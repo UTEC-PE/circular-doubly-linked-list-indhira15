@@ -9,14 +9,28 @@ class Iterator {
         Node<T>* current;
     
     public:
-        Iterator();
-        Iterator(Node<T>* node);
-         
-        Iterator<T> operator=(Iterator<T> node);
-        bool operator!=(Iterator<T> cmp);
-        Iterator<T> operator++();
-        Iterator<T> operator--();
-        T operator*();
+		Iterator():current(nullptr){}
+		Iterator(Node<T>* node):current(node){}
+		//current es el puntero
+		Iterator<T> operator=(Iterator<T> node) {
+			current = node.current ->next;
+		}
+		bool operator!=(Iterator<T> cmp) {
+			return (current !=cmp.current);
+		}
+		Iterator<T> operator++() {
+			current = current->next;
+		//devueleve el mismo objeto
+			return *this;
+		}
+		Iterator<T> operator--(){
+			current = current->prev;
+			return *this;
+		}
+		T operator*(){
+			return current->data;
+		}
+		//contenido del iterador
 };
 
 #endif
