@@ -20,7 +20,7 @@ class List {
 		}
 		T front() {
 			if(start==nullptr) {
-                cout << "lista vacia";
+                cout << "lista vacia"; // Da warning, debería ser un throw
             }
             else {
                 return start->data;
@@ -28,7 +28,7 @@ class List {
 		}
 		T back() {
 			if(start==nullptr){
-				cout<<"lista vacia";
+				cout<<"lista vacia";  // Da warning, debería ser un throw
 			}
 			else {
                 return start->prev->data;
@@ -70,7 +70,7 @@ class List {
 			nodes++;
 		
 		}
-        void pop_front(){
+        void pop_front(){ // No estás borrando el elemento
 			if(start==nullptr){
 				cout<<"lista vacia";
 			}
@@ -86,7 +86,7 @@ class List {
 			}
 			nodes--;
         }
-        void pop_back(){
+        void pop_back(){ // No estás borrando el elemento
 			if(start==nullptr){
 				cout<<"lista vacia";
 			}
@@ -104,13 +104,13 @@ class List {
 
         T get(int position){
         	auto* aux=start;
-			for(int i=0;i<position;i++){
-				aux=aux->next;
+			for(int i=0;i<position;i++){ // Podrías usar el módulo
+				aux=aux->next; 
 			}
 			return(aux->data);
         }
         void concat(List<T> &other){
-        	start->prev->next = other.start;
+        	start->prev->next = other.start; // Falta
         	other.start->prev=start->prev;
         }
         bool empty(){
@@ -132,7 +132,7 @@ class List {
         	return Iterator<T>(start->prev);
         }
 
-        ~List(){}
+        ~List(){} // No se implementó
 };
 
 #endif
